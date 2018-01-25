@@ -1,0 +1,16 @@
+/**
+ * License ...
+ */
+
+partner BauhausCentral {
+
+  connections {
+    AS2Source testConnection;
+    AS2Destination testConnection;    
+  }
+  
+  //Provider with no own interfaces
+  interfaces {
+  
+  }
+}

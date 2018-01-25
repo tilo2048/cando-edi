@@ -1,0 +1,18 @@
+/**
+ * License ...
+ */
+
+partner EDISOFT {
+
+  connections {
+    AS2Source testConnection;
+    AS2Destination testConnection;    
+  }
+  
+  //Provider with own interfaces
+  interfaces {
+    ORDERS_D96A SalesOrder;
+    DESADV_D96A DeliveryAdvice;
+    INVOIC_D96A CustomerInvoice
+  }
+}

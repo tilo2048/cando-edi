@@ -1,0 +1,52 @@
+/**
+ * License ...
+ */
+package path.to.PartnerDefition
+
+import path.to.connections
+import path.to.interfaces
+import path.to.scenarios
+import path.to.partners/providers
+
+/**
+ * Some description
+partner "PartnerName" [as SystemPartnerName] {
+	
+	connections {
+		//<ConnectionType> <ConnectionName>
+		AS2Source testConnection
+		AS2Destination testConnection
+		AS2Source prodConnection
+		AS2Destination prodConnection
+		//via <ProviderOrGatewaySystemName> <ConnectionType> <ConnectionName>
+		via ProviderSystemName AS2Source providerConnection
+		via GatewaySystemName AS2Destination gatewayConnection
+	}
+	
+	interfaces {
+	  //<InterfaceType>_<Version> <Name>
+	  //  [with <RelatedInterfaceType>_<Version> <Name>]*
+    ORDERS_D96A SalesOrder
+      with CONTRL_D96A
+      with APERAK_D96A
+    DESADV_D96A DeliveryAdvice
+      with CONTRL_D96A
+      with APERAK_D96A
+    INVOIC_D96A CustomerInvoice
+      with CONTRL_D96A
+      with APERAK_D96A
+	}
+	
+	scenarios {
+		//<System> <Interface> to <System> [via <Provider/Gateway>] <Interface> [<opt. Qualifier>]
+		SystemName ORDERS_D96A to teSAP ORDERS SalesOrders
+			with CONTRL D96A to SystemName
+			with APERAK D96A to SystemName
+			with EMail to DistributionList
+		teSAP DESADV to SystemName DESADV_D96A DeliveryAdvice
+		//Provider with own interface
+		teSAP INVOIC to SystemName via Provider INVOIC_D96A CustomerInvoice
+		//Provider without own inteface / forwarder
+		teSAP INVOIC to SystemName INVOIC_D96A via Provider CustomerInvoice
+	}
+} 
