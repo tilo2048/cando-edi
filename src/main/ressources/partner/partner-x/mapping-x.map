@@ -1,0 +1,46 @@
+reference path/to/type [short name]
+reference path/to/library [short name, e.g. "lib"]
+
+/**
+ * Header
+ *
+ *
+ */
+mapping
+  imports <type> in
+    <type> in2
+    parameter de.gau.param default "in"
+  exports <type> out
+    <type> mail 
+    parameter de.gau.param default "out"
+{
+
+  
+  String string = "";
+  Integer integer = 0;
+  Decimal decimal = 0.0;
+  Type type = new Type;
+  
+  /**
+   * Moves only the first of in:path/to/element
+   * even if it is repeating
+   */
+  move in:path/to/element
+    to out:path/to/element;
+  
+  move lib:function(...)
+    to out:path/to/element
+  
+  for each in:path/to/group {
+    move in:path/to/group/element
+      to out:path/to/group/element;
+  
+    //Name a group
+    for each in:path/to/group innner {
+      move inner:path/to/group/element
+        to out:path/to/group/element;    
+    }
+    
+    next out:path/to/group;
+  } 
+}
