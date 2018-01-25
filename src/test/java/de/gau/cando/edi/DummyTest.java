@@ -6,10 +6,10 @@ import org.junit.Test;
 
 public class DummyTest {
 
-	@Test
-	public void failure() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void failure() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void success() {
