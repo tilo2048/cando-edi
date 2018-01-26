@@ -1,6 +1,6 @@
 package de.tgau.cando.edi;
 
-public interface Destination {
+public interface IDestination {
 
 	public void put(IMessage message);
 }
